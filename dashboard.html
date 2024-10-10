@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Head Content -->
   <meta charset="UTF-8">
@@ -27,23 +28,29 @@
     }
 
     .navbar-custom .container-fluid {
-      max-width: 1400px; /* Match the content-container width */
+      max-width: 1400px;
+      /* Match the content-container width */
       margin: 0 auto;
     }
 
     /* Main Wrapper */
     .main-wrapper {
-      max-width: 1400px; /* Set the maximum width */
-      margin: 0 auto;    /* Center the container */
-      padding-top: 70px; /* Offset for the navbar */
+      max-width: 1400px;
+      /* Set the maximum width */
+      margin: 0 auto;
+      /* Center the container */
+      padding-top: 70px;
+      /* Offset for the navbar */
       display: flex;
     }
 
     /* Sidebar Styles */
     .sidebar {
       background-color: #f8f9fa;
-      width: 250px; /* Fixed width for the sidebar */
-      min-height: calc(100vh - 70px); /* Full viewport height minus navbar */
+      width: 250px;
+      /* Fixed width for the sidebar */
+      min-height: calc(100vh - 70px);
+      /* Full viewport height minus navbar */
       overflow-y: auto;
       padding-top: 20px;
       padding-left: 15px;
@@ -118,30 +125,45 @@
       display: flex;
       align-items: center;
       background-color: #f8f9fa;
-      padding: 5px; /* Reduced padding */
-      margin-bottom: 20px;
+      padding: 5px;
+      /* Reduced padding */
+      margin-top: 10px;
+      margin-bottom: 10px;
       border-radius: 5px;
       border: 1px solid #ddd;
     }
 
     /* Search Input Styles */
     .filter-toolbar .filter-search {
-      flex-grow: 5; /* Make the search box wider */
+      flex: 0 0 60%;
+      max-width: 60%;
       padding: 4px 8px;
       border-radius: 3px;
       border: 1px solid #ddd;
       margin-right: 10px;
     }
 
+    /* Filter Options Container */
+    .filter-toolbar .filter-options {
+      display: flex;
+      flex: 0 0 40%;
+      max-width: 40%;
+    }
+
     /* Filter Options Styles */
     .filter-toolbar .filter-select {
-      flex-grow: 5; /* Prevent dropdowns from growing */
+      flex: 1;
+      min-width: 0;
+      /* Allow shrinking */
       padding: 4px 8px;
       border-radius: 3px;
       border: 1px solid #ddd;
       margin-right: 5px;
       background-color: white;
-      width: auto; /* Allow dropdowns to adjust to content */
+    }
+
+    .filter-toolbar .filter-select:last-child {
+      margin-right: 0;
     }
 
     /* General Input, Select, Button Styles */
@@ -182,7 +204,8 @@
       display: flex;
       align-items: center;
       margin-bottom: 10px;
-      margin-right: 15px; /* Reduced margin to fit more items in a line */
+      margin-right: 15px;
+      /* Reduced margin to fit more items in a line */
     }
 
     .card-custom .metrics-row .metric-item:last-child {
@@ -218,7 +241,8 @@
     }
 
     .group-metrics {
-      display: flex; /* Use Flexbox */
+      display: flex;
+      /* Use Flexbox */
       flex-wrap: wrap;
       align-items: center;
     }
@@ -246,7 +270,8 @@
     .navbar-nav {
       margin-left: 20px;
       flex-direction: row;
-      margin-right: auto; /* Ensure navbar items align to the left */
+      margin-right: auto;
+      /* Ensure navbar items align to the left */
     }
 
     .navbar-nav .nav-item {
@@ -266,7 +291,8 @@
     /* Responsive Adjustments */
     @media (max-width: 992px) {
       .card-custom .metrics-row .metric-item {
-        flex: 1 1 50%; /* Two items per row on smaller screens */
+        flex: 1 1 50%;
+        /* Two items per row on smaller screens */
       }
 
       /* Adjust header actions on smaller screens */
@@ -278,15 +304,33 @@
       .header-container {
         flex-wrap: wrap;
       }
+
+      /* Adjust filter toolbar on smaller screens */
+      .filter-toolbar {
+        flex-wrap: wrap;
+      }
+
+      .filter-toolbar .filter-search,
+      .filter-toolbar .filter-options {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-right: 0;
+      }
+
+      .filter-toolbar .filter-search {
+        margin-bottom: 10px;
+      }
     }
 
     @media (max-width: 576px) {
       .card-custom .metrics-row .metric-item {
-        flex: 1 1 100%; /* One item per row on extra small screens */
+        flex: 1 1 100%;
+        /* One item per row on extra small screens */
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Navbar -->
@@ -357,15 +401,17 @@
         <!-- Search Input -->
         <input type="text" class="form-control filter-search" placeholder="Search for projects...">
         <!-- Filter Options -->
-        <select class="form-select filter-select">
-          <option>Perspective</option>
-        </select>
-        <select class="form-select filter-select">
-          <option>Overall Status</option>
-        </select>
-        <select class="form-select filter-select">
-          <option>Sort by</option>
-        </select>
+        <div class="filter-options">
+          <select class="form-select filter-select">
+            <option>Perspective</option>
+          </select>
+          <select class="form-select filter-select">
+            <option>Overall Status</option>
+          </select>
+          <select class="form-select filter-select">
+            <option>Sort by</option>
+          </select>
+        </div>
       </div>
 
       <!-- Group 1: Project Cards -->
@@ -491,7 +537,411 @@
 
       </div>
 
-      <!-- You can add more groups here -->
+      <!-- Group 2: .NET Projects -->
+      <div class="card-container">
+        <!-- Group Header -->
+        <div class="group-header">
+          <div class="group-title">Group 2 - .NET Projects</div>
+          <div class="group-metrics">
+            <span>Bugs:
+              <div class="badge-svg">
+                <!-- SVG Badge for Bugs -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#f44336" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">B</text>
+                </svg>
+              </div>
+            </span>
+            <span>Vulnerabilities:
+              <div class="badge-svg">
+                <!-- SVG Badge for Vulnerabilities -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#f44336" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">B</text>
+                </svg>
+              </div>
+            </span>
+            <span>Code Smells:
+              <div class="badge-svg">
+                <!-- SVG Badge for Code Smells -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#f44336" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">B</text>
+                </svg>
+              </div>
+            </span>
+          </div>
+        </div>
+
+        <!-- Project Card 2.1 -->
+        <div class="card-custom">
+          <h5>
+            <a href="#">API Integration Example</a>
+            <span class="badge passed-badge">Passed</span>
+          </h5>
+          <p>Last analysis: 5 hours ago</p>
+          <div class="metrics-row">
+            <!-- Bugs Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-bug"></i>
+              Bugs
+              <div class="badge-svg">
+                <!-- SVG Badge for Bugs -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Vulnerabilities Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-lock"></i>
+              Vulnerabilities
+              <div class="badge-svg">
+                <!-- SVG Badge for Vulnerabilities -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Hotspots Reviewed Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-shield-shaded"></i>
+              Hotspots Reviewed
+              <div class="badge-svg">
+                <!-- SVG Badge for Hotspots Reviewed -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Code Smells Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-emoji-neutral"></i>
+              Code Smells
+              <div class="badge-svg">
+                <!-- SVG Badge for Code Smells -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Coverage Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-percent"></i>
+              Coverage
+              <div class="badge-svg">
+                <!-- SVG Badge for Coverage -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="70">
+                  <rect fill="#6c757d" width="70" height="20" rx="3"></rect>
+                  <text x="35" y="14" fill="#fff" font-size="11" text-anchor="middle">60.0%</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Lines Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-file-earmark-lines"></i>
+              Lines
+              <div class="badge-svg">
+                <!-- SVG Badge for Lines -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#6c757d" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">100</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 2.2 -->
+        <div class="card-custom">
+          <h5>
+            <a href="#">Backend API Refactoring</a>
+            <span class="badge passed-badge">Passed</span>
+          </h5>
+          <p>Last analysis: 12 hours ago</p>
+          <div class="metrics-row">
+            <!-- Bugs Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-bug"></i>
+              Bugs
+              <div class="badge-svg">
+                <!-- SVG Badge for Bugs -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Vulnerabilities Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-lock"></i>
+              Vulnerabilities
+              <div class="badge-svg">
+                <!-- SVG Badge for Vulnerabilities -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Hotspots Reviewed Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-shield-shaded"></i>
+              Hotspots Reviewed
+              <div class="badge-svg">
+                <!-- SVG Badge for Hotspots Reviewed -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Code Smells Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-emoji-neutral"></i>
+              Code Smells
+              <div class="badge-svg">
+                <!-- SVG Badge for Code Smells -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Coverage Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-percent"></i>
+              Coverage
+              <div class="badge-svg">
+                <!-- SVG Badge for Coverage -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="70">
+                  <rect fill="#6c757d" width="70" height="20" rx="3"></rect>
+                  <text x="35" y="14" fill="#fff" font-size="11" text-anchor="middle">60.0%</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Lines Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-file-earmark-lines"></i>
+              Lines
+              <div class="badge-svg">
+                <!-- SVG Badge for Lines -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#6c757d" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">100</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 3: Python Projects -->
+      <div class="card-container">
+        <!-- Group Header -->
+        <div class="group-header">
+          <div class="group-title">Group 3 - Python Projects</div>
+          <div class="group-metrics">
+            <span>Bugs:
+              <div class="badge-svg">
+                <!-- SVG Badge for Bugs -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#ff9800" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">C</text>
+                </svg>
+              </div>
+            </span>
+            <span>Vulnerabilities:
+              <div class="badge-svg">
+                <!-- SVG Badge for Vulnerabilities -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#ff9800" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">C</text>
+                </svg>
+              </div>
+            </span>
+            <span>Code Smells:
+              <div class="badge-svg">
+                <!-- SVG Badge for Code Smells -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#ff9800" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">C</text>
+                </svg>
+              </div>
+            </span>
+          </div>
+        </div>
+
+        <!-- Project Card 3.1 -->
+        <div class="card-custom">
+          <h5>
+            <a href="#">Machine Learning Model</a>
+            <span class="badge passed-badge">Passed</span>
+          </h5>
+          <p>Last analysis: 1 day ago</p>
+          <div class="metrics-row">
+            <!-- Bugs Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-bug"></i>
+              Bugs
+              <div class="badge-svg">
+                <!-- SVG Badge for Bugs -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Vulnerabilities Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-lock"></i>
+              Vulnerabilities
+              <div class="badge-svg">
+                <!-- SVG Badge for Vulnerabilities -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Hotspots Reviewed Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-shield-shaded"></i>
+              Hotspots Reviewed
+              <div class="badge-svg">
+                <!-- SVG Badge for Hotspots Reviewed -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Code Smells Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-emoji-neutral"></i>
+              Code Smells
+              <div class="badge-svg">
+                <!-- SVG Badge for Code Smells -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Coverage Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-percent"></i>
+              Coverage
+              <div class="badge-svg">
+                <!-- SVG Badge for Coverage -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="70">
+                  <rect fill="#6c757d" width="70" height="20" rx="3"></rect>
+                  <text x="35" y="14" fill="#fff" font-size="11" text-anchor="middle">60.0%</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Lines Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-file-earmark-lines"></i>
+              Lines
+              <div class="badge-svg">
+                <!-- SVG Badge for Lines -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#6c757d" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">100</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 3.2 -->
+        <div class="card-custom">
+          <h5>
+            <a href="#">Data Processing Script</a>
+            <span class="badge passed-badge">Passed</span>
+          </h5>
+          <p>Last analysis: 2 days ago</p>
+          <div class="metrics-row">
+            <!-- Bugs Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-bug"></i>
+              Bugs
+              <div class="badge-svg">
+                <!-- SVG Badge for Bugs -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Vulnerabilities Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-lock"></i>
+              Vulnerabilities
+              <div class="badge-svg">
+                <!-- SVG Badge for Vulnerabilities -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Hotspots Reviewed Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-shield-shaded"></i>
+              Hotspots Reviewed
+              <div class="badge-svg">
+                <!-- SVG Badge for Hotspots Reviewed -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Code Smells Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-emoji-neutral"></i>
+              Code Smells
+              <div class="badge-svg">
+                <!-- SVG Badge for Code Smells -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#4caf50" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">A</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Coverage Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-percent"></i>
+              Coverage
+              <div class="badge-svg">
+                <!-- SVG Badge for Coverage -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="70">
+                  <rect fill="#6c757d" width="70" height="20" rx="3"></rect>
+                  <text x="35" y="14" fill="#fff" font-size="11" text-anchor="middle">60.0%</text>
+                </svg>
+              </div>
+            </div>
+            <!-- Lines Metric -->
+            <div class="metric-item">
+              <i class="metric-icon bi bi-file-earmark-lines"></i>
+              Lines
+              <div class="badge-svg">
+                <!-- SVG Badge for Lines -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="50">
+                  <rect fill="#6c757d" width="50" height="20" rx="3"></rect>
+                  <text x="25" y="14" fill="#fff" font-size="11" text-anchor="middle">100</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -500,4 +950,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
